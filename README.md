@@ -184,6 +184,8 @@ Requires medical confirmation – predictions should be verified with a neurolog
 
 https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/master/Screenshot%20(91).png?raw=true
 
+Successfully deploy :- https://symmetrical-fortnight-576wr77r66rfpgp5-8501.app.github.dev/
+
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
