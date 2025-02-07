@@ -20,11 +20,7 @@ Before you begin, make sure you have Python 3.7 or higher installed. You can dow
 
 Installation Steps
 1️⃣ Clone the Repository:
-
-sh
-Copy
-Edit
-git clone https://github.com/yourusername/health-assistant.git ](https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-.git 
+git clone https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-.git 
 cd health-assistant  
 2️⃣ Set Up a Virtual Environment (Optional but Recommended):
 python -m venv env  
@@ -105,7 +101,8 @@ Limitations
 This is not a medical diagnosis, just an early risk indicator.
 Accuracy depends on the quality and completeness of user input.
 Some lifestyle and genetic factors may not be fully captured in the model.
-https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/0e27a367673146a92ca4aa1b09ecd96670de85c9/Screenshot%20(88).png
+
+https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/master/Screenshot%20(88).png?raw=true
 
 Heart disease predictions:-
 
@@ -148,7 +145,7 @@ Not a substitute for professional medical advice – predictions should be confi
 Does not consider all risk factors like genetics, stress levels, or lifestyle habits.
 Model accuracy depends on training data – results may vary based on individual health conditions.
 
-https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/0e27a367673146a92ca4aa1b09ecd96670de85c9/Screenshot%20(90).png
+https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/master/Screenshot%20(90).png?raw=true
 
 Parkinson's disease predictions:-
 
@@ -185,7 +182,7 @@ Not a diagnostic tool – should be used as a screening aid.
 Relies on voice/movement patterns – may not detect early Parkinson’s symptoms accurately.
 Requires medical confirmation – predictions should be verified with a neurologist.
 
-https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/0e27a367673146a92ca4aa1b09ecd96670de85c9/Screenshot%20(91).png
+https://github.com/vine-1/Diabetes-Heart-Disease-and-Parkinson-s-Disease.-/blob/master/Screenshot%20(91).png?raw=true
 
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
