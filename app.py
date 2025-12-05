@@ -10,9 +10,13 @@ st.set_page_config(page_title="Health Assistant", layout="wide", page_icon="âš•ï
 working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Loading the saved models
-diabetes_model = pickle.load(open(os.path.join(working_dir, 'C:/Users/vinee/Documents/MCA PROJECT/Internship Project/multidiseaseprediction-main/saved models/diabetes_model.sav'), 'rb'))
-heart_disease_model = pickle.load(open(os.path.join(working_dir, 'C:/Users/vinee/Documents/MCA PROJECT/Internship Project/multidiseaseprediction-main/saved models/heart_disease_model.sav'), 'rb'))
-parkinsons_model = pickle.load(open(os.path.join(working_dir, 'C:/Users/vinee/Documents/MCA PROJECT/Internship Project/multidiseaseprediction-main/saved models/parkinsons_model.sav'), 'rb'))
+diabetes_model_path = os.path.join(working_dir, 'saved_models', 'diabetes_model.sav')
+heart_model_path = os.path.join(working_dir, 'saved_models', 'heart_disease_model.sav')
+parkinson_model_path = os.path.join(working_dir, 'saved_models', 'parkinsons_model.sav')
+
+diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
+heart_disease_model = pickle.load(open(heart_model_path, 'rb'))
+parkinsons_model = pickle.load(open(parkinson_model_path, 'rb'))
 
 # Sidebar for navigation
 with st.sidebar:
