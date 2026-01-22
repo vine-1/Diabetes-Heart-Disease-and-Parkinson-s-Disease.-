@@ -4,34 +4,20 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/health-assistant
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - aws --version
+      - AWS_REGION=us-east-1
+      - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/myapp-prod
+      - echo Repo is $REPOSITORY_URI
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
 
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-      - echo Validating Docker image...
-      - docker images
+      - echo Building Docker image
+      - docker build -t myapp-prod .
+      - docker tag myapp-prod:latest $REPOSITORY_URI:latest
 
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
+      - echo Pushing image
       - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"health-assistant","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-
-artifacts:
-  files: imagedefinitions.json
-  name: BuildArtifact
-
-cache:
-  paths:
-    - '/root/.cache/pip/**/*'
-    - '/root/.docker/**/*'
