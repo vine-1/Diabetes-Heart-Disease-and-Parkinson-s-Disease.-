@@ -3,21 +3,26 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
+      - echo Logging in to Amazon ECR
       - aws --version
-      - AWS_REGION=us-east-1
       - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/deploy
-      - echo Repo is $REPOSITORY_URI
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - aws ecr get-login-password --region $AWS_REGION |
+        docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      - IMAGE_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/deploy:latest
 
   build:
     commands:
       - echo Building Docker image
-      - docker build -t deploy .
-      - docker tag deploy:latest $REPOSITORY_URI:latest
+      - docker build -t $IMAGE_URI .
 
   post_build:
     commands:
-      - echo Pushing image
-      - docker push $REPOSITORY_URI:latest
+      - echo Pushing Docker image
+      - docker push $IMAGE_URI
+
+      - echo Creating imagedefinitions.json for ECS
+      - printf '[{"name":"deploy","imageUri":"%s"}]' $IMAGE_URI > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
