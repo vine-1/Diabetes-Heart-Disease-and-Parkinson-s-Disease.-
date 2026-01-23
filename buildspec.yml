@@ -7,15 +7,15 @@ phases:
       - aws --version
       - AWS_REGION=us-east-1
       - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/cicd/app
+      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/deploy
       - echo Repo is $REPOSITORY_URI
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
 
   build:
     commands:
       - echo Building Docker image
-      - docker build -t cicd/app .
-      - docker tag cicd/app:latest $REPOSITORY_URI:latest
+      - docker build -t deploy .
+      - docker tag deploy:latest $REPOSITORY_URI:latest
 
   post_build:
     commands:
