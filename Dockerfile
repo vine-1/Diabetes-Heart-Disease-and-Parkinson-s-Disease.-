@@ -1,5 +1,5 @@
 # Use an official lightweight Python backend
-FROM python:3.10-slim
+FROM public.ecr.aws/docker/library/python:3.10-slim
 
 # Disable .pyc creation and enable real-time logs
 
